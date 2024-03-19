@@ -1,16 +1,11 @@
-# meals_app
+# MEALS APP
 
-A new Flutter project.
+## Description
+Application to store your own recipes and marking your favorites
 
-## Getting Started
+## Technologies
+Flutter - Dart
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## More about
+This application was created on the basis of an Udemy tutorial:
+https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/?couponCode=LETSLEARNNOW
