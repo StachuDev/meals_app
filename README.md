@@ -13,3 +13,8 @@ Flutter - Dart
 - navigation: bottomNavigationBar, drawer, pushing MaterialPageRoute
 - popScope widget - intercept pushing screen Future Object
 - StatelessWidget and StatefulWidget
+
+## Presentation
+
+https://github.com/StachuDev/meals_app/assets/126360195/761cdb5e-a7df-4166-89e8-7a769f410b4c
+
