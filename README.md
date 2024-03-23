@@ -15,3 +15,7 @@ Flutter - Dart
 - popScope widget - returning data when poping screen
 - StatelessWidget and StatefulWidget
 - flutter_riverpod state sharing
+
+## Presentation
+
+https://github.com/StachuDev/meals_app/assets/126360195/761cdb5e-a7df-4166-89e8-7a769f410b4c
