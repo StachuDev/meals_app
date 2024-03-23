@@ -10,6 +10,8 @@ Flutter - Dart
 
 ### Main features
 - app Theme modlue with google fonts
-- navigation: bottomNavigationBar, drawer, pushing MaterialPageRoute
-- popScope widget - intercept pushing screen Future Object
+- navigation: bottomNavigationBar, pushing MaterialPageRoute
+- side drawer
+- popScope widget - returning data when poping screen
 - StatelessWidget and StatefulWidget
+- flutter_riverpod state sharing
