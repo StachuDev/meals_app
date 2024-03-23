@@ -33,29 +33,6 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     });
   }
 
-  void _showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
-
-  void _updateFavoriteMeals(Meal meal) {
-    if (_favoriteMeals.contains(meal)) {
-      setState(() {
-        _favoriteMeals.remove(meal);
-      });
-      _showInfoMessage('Ten posiłek nie jest już w liscie ulubionych.');
-    } else {
-      setState(() {
-        _favoriteMeals.add(meal);
-      });
-      _showInfoMessage('Dodano ten posiłek do ulubionych.');
-    }
-  }
-
   void _setScreen(String identifier) async {
     Navigator.of(context).pop();
     if (identifier == 'filters') {
@@ -90,14 +67,13 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       return true;
     }).toList();
     Widget activePage = CategoriesScreen(
-      onToggleFavorite: _updateFavoriteMeals,
       availableMeals: dummyMealsFiltered,
     );
     String activePageTitle = 'Kategorie';
 
     if (_selectedPageIndex == 1) {
-      activePage = MealsScreen(
-          meals: _favoriteMeals, onToggleFavorite: _updateFavoriteMeals);
+      final favoriteMeals = ref.watch(favoriteMealsProvider);
+      activePage = MealsScreen(meals: favoriteMeals);
       activePageTitle = 'Ulubione';
     }
     return Scaffold(
