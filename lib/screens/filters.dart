@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/providers/filters_providers.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum Filter {
-  lactoseFree,
-  glutenFree,
-  vegetarian,
-  vegan,
-}
-
-class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({super.key, required this.selectedMealFilters});
-  final Map<Filter, bool> selectedMealFilters;
+class FiltersScreen extends ConsumerStatefulWidget {
+  const FiltersScreen({super.key});
 
   @override
-  State<FiltersScreen> createState() {
+  ConsumerState<FiltersScreen> createState() {
     return _FiltersScreenState();
   }
 }
 
-class _FiltersScreenState extends State<FiltersScreen> {
+class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   var _glutenFreeFilterSet = false;
   var _lactoseFreeFilterSet = false;
   var _vegetarianFilterSet = false;
@@ -27,10 +21,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   void initState() {
     super.initState();
-    _glutenFreeFilterSet = widget.selectedMealFilters[Filter.glutenFree]!;
-    _lactoseFreeFilterSet = widget.selectedMealFilters[Filter.lactoseFree]!;
-    _vegetarianFilterSet = widget.selectedMealFilters[Filter.vegetarian]!;
-    _veganFilterSet = widget.selectedMealFilters[Filter.vegan]!;
+    final filtersState = ref.read(filtersProvider);
+
+    _glutenFreeFilterSet = filtersState[Filter.glutenFree]!;
+    _lactoseFreeFilterSet = filtersState[Filter.lactoseFree]!;
+    _vegetarianFilterSet = filtersState[Filter.vegetarian]!;
+    _veganFilterSet = filtersState[Filter.vegan]!;
   }
 
   @override
@@ -52,13 +48,20 @@ class _FiltersScreenState extends State<FiltersScreen> {
       body: PopScope(
         canPop: false,
         onPopInvoked: (bool didPop) {
-          if (didPop) return;
-          Navigator.of(context).pop({
+          // didPop == true after trigger .pop() method
+          if (didPop) {
+            return;
+          }
+
+          // this code is executed before condition becouse canPop == false => didPop == false
+          ref.read(filtersProvider.notifier).setFilters({
             Filter.glutenFree: _glutenFreeFilterSet,
             Filter.lactoseFree: _lactoseFreeFilterSet,
             Filter.vegetarian: _vegetarianFilterSet,
             Filter.vegan: _veganFilterSet,
           });
+
+          Navigator.of(context).pop();
         },
         child: Column(
           children: [
